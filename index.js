@@ -7,10 +7,17 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+const basicAuth = require('express-basic-auth');
 
 const terminals = {};
 const logs = {};
-
+app.use(basicAuth({
+    users: { 'admin': 'password' }, // Replace with your username and password
+    challenge: true,
+    unauthorizedResponse: (req) => {
+      return req.auth ? `Credentials for ${req.auth.user} rejected` : 'No credentials provided';
+    }
+  }));
 app.use('/xterm', express.static(path.join(__dirname, 'node_modules', 'xterm', 'lib')));
 
 app.get('/', (req, res) => {
