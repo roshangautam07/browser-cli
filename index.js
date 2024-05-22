@@ -3,10 +3,11 @@ const http = require('http');
 const socketIo = require('socket.io');
 const pty = require('node-pty');
 const path = require('path');
-
+const { socketRedis, socketCommunication } = require('./websocket');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+// const io = socketCommunication(server)
 const basicAuth = require('express-basic-auth');
 
 const terminals = {};
