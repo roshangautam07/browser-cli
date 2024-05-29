@@ -7,7 +7,7 @@ const { socketRedis, socketCommunication } = require('./websocket');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-// const io = socketCommunication(server)
+// const io = socketRedis(server)
 const basicAuth = require('express-basic-auth');
 
 const terminals = {};
@@ -69,5 +69,5 @@ io.on('connection', socket => {
   });
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 server.listen(port, () => console.log(`Server listening on port ${port}`));

@@ -26,7 +26,9 @@
   <script src="https://cdn.jsdelivr.net/npm/xterm@4.15.0/lib/xterm.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.4.0/lib/xterm-addon-fit.js"></script>
   <script>
-    const socket = io.connect();
+    const socket = io.connect({
+  transports: [ 'websocket', 'polling' ]
+});
     const terminalContainer = document.getElementById('terminal');
 
     const term = new Terminal();

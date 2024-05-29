@@ -77,4 +77,11 @@ let socketIOInstance = null;
     });
     return socketIO;
 }
-module.exports = {socketCommunication,socketRedis};
+
+ const getSocketIOInstance = () => {
+    // if (!socketIOInstance) {
+    //     throw new Error('SocketIO instance has not been initialized.');
+    // }
+    return socketIO;
+}
+module.exports = {socketCommunication,socketRedis,getSocketIOInstance};
